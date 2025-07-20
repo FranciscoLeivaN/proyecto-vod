@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto VOD - GitHub Pages</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #141414;
+            color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            padding: 20px;
+        }
+        h1 {
+            color: #e50914;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        .loader {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #e50914;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 2s linear infinite;
+            margin: 0 auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Proyecto VOD</h1>
+        <p>La aplicación está siendo desplegada en GitHub Pages. Por favor, espera un momento...</p>
+        <div class="loader"></div>
+        <p>Si ves esta página durante mucho tiempo, puede que el despliegue aún esté en proceso o que haya ocurrido un error.</p>
+        <p>Verifica el estado del despliegue en las <a href="https://github.com/FranciscoLeivaN/proyecto-vod/actions" style="color: #e50914;">Actions</a> del repositorio.</p>
+    </div>
+</body>
+</html>

@@ -6,7 +6,8 @@ This is a video-on-demand application with Express backend and React frontend us
 
 - `client/` - React frontend built with Vite
 - `server/` - Express backend API
-- `terraform/` - Infrastructure as Code for AWS deployment
+- `terraform/` - Infrastructure as Code for Docker deployment
+- `.github/workflows/` - GitHub Actions workflows for deployment
 
 ## Setup
 
@@ -105,3 +106,23 @@ This project includes Terraform configuration to deploy the application using Do
    ```
 
 For more details, see the [Terraform README](./terraform/README.md).
+
+## Deployment with GitHub Pages
+
+This project is set up to automatically deploy to GitHub Pages when changes are pushed to the `main` branch.
+
+### Prerequisites
+- GitHub repository with GitHub Pages enabled
+- TMDB API Token added as a repository secret named `TMDB_API_TOKEN`
+
+### How it works
+1. Push your changes to the `main` branch
+2. GitHub Actions workflow will build the React application
+3. The built application will be deployed to GitHub Pages
+4. The application will be available at `https://[your-username].github.io/proyecto-vod/`
+
+### Manual deployment
+You can also trigger the deployment manually from the Actions tab in your GitHub repository.
+
+### Note about server functionality
+When deployed to GitHub Pages, the application runs without the Express backend. All API calls are made directly to the TMDB API using the client-side environment variable.
