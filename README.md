@@ -1,137 +1,137 @@
 # Proyecto VOD
 
-This is a video-on-demand application with Express backend and React frontend using Vite.
+Esta es una aplicación de video bajo demanda con backend en Express y frontend en React utilizando Vite.
 
-## Project Structure
+## Estructura del Proyecto
 
-- `client/` - React frontend built with Vite
-- `server/` - Express backend API
-- `terraform/` - Infrastructure as Code for Docker deployment
-- `.github/workflows/` - GitHub Actions workflows for deployment
+- `client/` - Frontend en React construido con Vite
+- `server/` - API backend en Express
+- `terraform/` - Infraestructura como Código para despliegue con Docker
+- `.github/workflows/` - Flujos de trabajo de GitHub Actions para despliegue
 
-## Setup
+## Configuración
 
-1. Install all dependencies for both the server and client:
+1. Instalar todas las dependencias tanto para el servidor como para el cliente:
 
 ```bash
 npm run install:all
 ```
 
-2. Configure environment variables:
+2. Configurar variables de entorno:
 
-Create a `.env` file in the `client` directory with the following variables:
+Crea un archivo `.env` en el directorio `client` con las siguientes variables:
 ```
-VITE_TMDB_API_TOKEN=your_tmdb_api_token_here
+VITE_TMDB_API_TOKEN=tu_token_api_tmdb_aquí
 ```
 
-You can copy the `.env.example` file as a starting point:
+Puedes copiar el archivo `.env.example` como punto de partida:
 ```bash
 cp client/.env.example client/.env
 ```
 
-To get a TMDB API token:
-- Register at [themoviedb.org](https://www.themoviedb.org/signup)
-- Go to your account settings -> API -> Create -> Request an API key
-- Once approved, generate an API Read Access Token (v4 auth)
+Para obtener un token de la API de TMDB:
+- Regístrate en [themoviedb.org](https://www.themoviedb.org/signup)
+- Ve a la configuración de tu cuenta -> API -> Crear -> Solicita una clave API
+- Una vez aprobada, genera un Token de Acceso de Lectura API (autenticación v4)
 
-## Development
+## Desarrollo
 
-Start the backend server (runs on port 3000):
+Inicia el servidor backend (se ejecuta en el puerto 3000):
 
 ```bash
 npm run dev:server
 ```
 
-In a separate terminal, start the frontend development server (runs on port 5173):
+En una terminal separada, inicia el servidor de desarrollo frontend (se ejecuta en el puerto 5173):
 
 ```bash
 npm run dev:client
 ```
 
-## Building for Production
+## Compilación para Producción
 
-Build the frontend for production:
+Compila el frontend para producción:
 
 ```bash
 npm run build
 ```
 
-This will create a `dist` folder in the client directory with optimized production build.
+Esto creará una carpeta `dist` en el directorio del cliente con una compilación optimizada para producción.
 
-## Running in Production
+## Ejecución en Producción
 
-To run the application in production mode:
+Para ejecutar la aplicación en modo producción:
 
 ```bash
 npm start
 ```
 
-This will serve the static frontend files from the Express server.
+Esto servirá los archivos estáticos del frontend desde el servidor Express.
 
-## Deployment with Terraform and Docker
+## Despliegue con Terraform y Docker
 
-This project includes Terraform configuration to deploy the application using Docker containers.
+Este proyecto incluye configuración de Terraform para desplegar la aplicación usando contenedores Docker.
 
-### Prerequisites
+### Prerrequisitos
 - [Terraform](https://www.terraform.io/downloads.html) (v1.0+)
-- [Docker](https://www.docker.com/get-started) installed and functioning
-- [Docker Compose](https://docs.docker.com/compose/install/) (optional)
+- [Docker](https://www.docker.com/get-started) instalado y funcionando
+- [Docker Compose](https://docs.docker.com/compose/install/) (opcional)
 
-### Deployment Steps
+### Pasos para el Despliegue
 
-1. Navigate to the Terraform directory:
+1. Navega al directorio de Terraform:
    ```bash
    cd terraform
    ```
 
-2. Create a `terraform.tfvars` file based on the example:
+2. Crea un archivo `terraform.tfvars` basado en el ejemplo:
    ```bash
    cp terraform.tfvars.example terraform.tfvars
    ```
 
-3. Edit the `terraform.tfvars` file with your values:
-   - `tmdb_api_token`: Your TMDB API token
-   - `server_port`: Port to expose the server (default: 3000)
-   - `client_port`: Port to expose the client (default: 5173)
-   - `use_nginx`: Whether to use Nginx as a reverse proxy
+3. Edita el archivo `terraform.tfvars` con tus valores:
+   - `tmdb_api_token`: Tu token API de TMDB
+   - `server_port`: Puerto para exponer el servidor (predeterminado: 3000)
+   - `client_port`: Puerto para exponer el cliente (predeterminado: 5173)
+   - `use_nginx`: Si se debe usar Nginx como proxy inverso
 
-4. Initialize Terraform:
+4. Inicializa Terraform:
    ```bash
    terraform init
    ```
 
-5. Deploy the infrastructure:
+5. Despliega la infraestructura:
    ```bash
    terraform apply
    ```
 
-For more details, see the [Terraform README](./terraform/README.md).
+Para más detalles, consulta el [README de Terraform](./terraform/README.md).
 
-## Deployment with GitHub Pages
+## Despliegue con GitHub Pages
 
-This project is set up to automatically deploy to GitHub Pages when changes are pushed to the `main` branch.
+Este proyecto está configurado para desplegarse automáticamente en GitHub Pages cuando se realizan cambios en la rama `main`.
 
-### Prerequisites
-- GitHub repository with GitHub Pages enabled (see detailed instructions below)
-- TMDB API Token added as a repository secret named `TMDB_API_TOKEN`
+### Prerrequisitos
+- Repositorio GitHub con GitHub Pages habilitado (ver instrucciones detalladas a continuación)
+- Token API de TMDB añadido como secreto del repositorio con el nombre `TMDB_API_TOKEN`
 
-### Enabling GitHub Pages
-1. Go to your repository on GitHub
-2. Click on "Settings" in the top navigation
-3. Scroll down to the "GitHub Pages" section
-4. Under "Source", select "GitHub Actions"
-5. Save the settings
+### Habilitando GitHub Pages
+1. Ve a tu repositorio en GitHub
+2. Haz clic en "Settings" en la navegación superior
+3. Desplázate hacia abajo hasta la sección "GitHub Pages"
+4. En "Source", selecciona "GitHub Actions"
+5. Guarda la configuración
 
-For more detailed instructions, see [GitHub Pages Setup Guide](./docs/github-pages-setup.md)
+Para instrucciones más detalladas, consulta la [Guía de Configuración de GitHub Pages](./docs/github-pages-setup.md)
 
-### How it works
-1. Push your changes to the `main` branch
-2. GitHub Actions workflow will build the React application
-3. The built application will be deployed to GitHub Pages
-4. The application will be available at `https://[your-username].github.io/proyecto-vod/`
+### Cómo funciona
+1. Envía tus cambios a la rama `main`
+2. El flujo de trabajo de GitHub Actions construirá la aplicación React
+3. La aplicación construida será desplegada en GitHub Pages
+4. La aplicación estará disponible en `https://[tu-nombre-usuario].github.io/proyecto-vod/`
 
-### Manual deployment
-You can also trigger the deployment manually from the Actions tab in your GitHub repository.
+### Despliegue manual
+También puedes activar el despliegue manualmente desde la pestaña Actions en tu repositorio GitHub.
 
-### Note about server functionality
-When deployed to GitHub Pages, the application runs without the Express backend. All API calls are made directly to the TMDB API using the client-side environment variable.
+### Nota sobre la funcionalidad del servidor
+Cuando se despliega en GitHub Pages, la aplicación se ejecuta sin el backend Express. Todas las llamadas API se realizan directamente a la API de TMDB utilizando la variable de entorno del lado del cliente.
