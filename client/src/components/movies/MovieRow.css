@@ -1,0 +1,134 @@
+.movie-row {
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.row-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  padding-left: 4%;
+  color: white;
+}
+
+.row-slider {
+  position: relative;
+}
+
+/* Customizamos el slider para que se vea más como Netflix */
+.movie-row .slick-list {
+  overflow: visible;
+  padding: 0 4%;
+}
+
+.movie-row .slick-track {
+  display: flex;
+  gap: 8px;
+}
+
+.slider-item {
+  padding: 0 4px;
+}
+
+/* Botones de navegación */
+.movie-row .slick-arrow {
+  position: absolute;
+  width: 40px;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.movie-row:hover .slick-arrow {
+  opacity: 1;
+}
+
+.movie-row .slick-prev {
+  left: 0;
+}
+
+.movie-row .slick-next {
+  right: 0;
+}
+
+.movie-row .slick-arrow:before {
+  font-size: 30px;
+}
+
+.row-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+.row-spinner {
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top: 3px solid #E50914;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+}
+
+.row-placeholder {
+  padding: 0 4%;
+}
+
+.row-placeholder-cards {
+  display: flex;
+  gap: 8px;
+  padding: 0 4px;
+  overflow-x: hidden;
+}
+
+.placeholder-card {
+  flex: 0 0 calc(16.666% - 8px);
+  min-height: 200px;
+  background: linear-gradient(to right, #333 0%, #444 50%, #333 100%);
+  border-radius: 4px;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@media (max-width: 1400px) {
+  .placeholder-card {
+    flex: 0 0 calc(20% - 8px);
+  }
+}
+
+@media (max-width: 1100px) {
+  .placeholder-card {
+    flex: 0 0 calc(25% - 8px);
+  }
+}
+
+@media (max-width: 800px) {
+  .placeholder-card {
+    flex: 0 0 calc(33.333% - 8px);
+  }
+}
+
+@media (max-width: 600px) {
+  .placeholder-card {
+    flex: 0 0 calc(50% - 8px);
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
