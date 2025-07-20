@@ -6,6 +6,7 @@ This is a video-on-demand application with Express backend and React frontend us
 
 - `client/` - React frontend built with Vite
 - `server/` - Express backend API
+- `terraform/` - Infrastructure as Code for AWS deployment
 
 ## Setup
 
@@ -65,3 +66,42 @@ npm start
 ```
 
 This will serve the static frontend files from the Express server.
+
+## Deployment with Terraform and Docker
+
+This project includes Terraform configuration to deploy the application using Docker containers.
+
+### Prerequisites
+- [Terraform](https://www.terraform.io/downloads.html) (v1.0+)
+- [Docker](https://www.docker.com/get-started) installed and functioning
+- [Docker Compose](https://docs.docker.com/compose/install/) (optional)
+
+### Deployment Steps
+
+1. Navigate to the Terraform directory:
+   ```bash
+   cd terraform
+   ```
+
+2. Create a `terraform.tfvars` file based on the example:
+   ```bash
+   cp terraform.tfvars.example terraform.tfvars
+   ```
+
+3. Edit the `terraform.tfvars` file with your values:
+   - `tmdb_api_token`: Your TMDB API token
+   - `server_port`: Port to expose the server (default: 3000)
+   - `client_port`: Port to expose the client (default: 5173)
+   - `use_nginx`: Whether to use Nginx as a reverse proxy
+
+4. Initialize Terraform:
+   ```bash
+   terraform init
+   ```
+
+5. Deploy the infrastructure:
+   ```bash
+   terraform apply
+   ```
+
+For more details, see the [Terraform README](./terraform/README.md).

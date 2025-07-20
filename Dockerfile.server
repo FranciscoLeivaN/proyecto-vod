@@ -1,0 +1,41 @@
+# Usar una imagen base Node.js
+FROM node:18-alpine
+
+# Establecer directorio de trabajo
+WORKDIR /app
+
+# Copiar los archivos de configuración
+COPY package*.json ./
+
+# Instalar dependencias
+RUN npm ci
+
+# Crear directorio para el cliente y copiarlo
+WORKDIR /app/client
+COPY client/package*.json ./
+RUN npm ci
+
+# Volver al directorio raíz
+WORKDIR /app
+
+# Copiar código fuente
+COPY . .
+
+# Construir cliente
+WORKDIR /app/client
+RUN npm run build
+
+# Volver al directorio raíz
+WORKDIR /app
+
+# Exponer el puerto de la aplicación
+EXPOSE 3000
+
+# Crear un directorio de datos (volumen)
+RUN mkdir -p /app/data
+
+# Agregar endpoint de salud para healthcheck
+RUN echo "app.get('/health', (req, res) => { res.status(200).send('OK'); });" >> /app/server/index.js
+
+# Comando para iniciar la aplicación
+CMD ["npm", "start"]

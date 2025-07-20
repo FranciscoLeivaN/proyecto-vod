@@ -84,3 +84,11 @@ pids
 *.pid
 *.seed
 *.pid.lock
+
+# Terraform files
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.*
+terraform/.terraform.lock.hcl
+terraform/*.tfvars
+terraform/*.tfvars.json

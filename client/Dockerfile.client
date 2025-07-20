@@ -1,0 +1,36 @@
+# Usar una imagen base Node.js ligera
+FROM node:18-alpine AS client-build
+
+# Establecer directorio de trabajo
+WORKDIR /app
+
+# Copiar los archivos de configuración
+COPY package*.json ./
+
+# Instalar dependencias
+RUN npm ci
+
+# Copiar código fuente
+COPY . .
+
+# Agregar variable de entorno durante la construcción
+ARG VITE_TMDB_API_TOKEN
+ENV VITE_TMDB_API_TOKEN=$VITE_TMDB_API_TOKEN
+
+# Construir la aplicación
+RUN npm run build
+
+# Etapa de producción con Nginx para servir archivos estáticos
+FROM nginx:alpine
+
+# Copiar los archivos compilados desde la etapa anterior
+COPY --from=client-build /app/dist /usr/share/nginx/html
+
+# Copiar configuración personalizada de Nginx
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Exponer puerto 80
+EXPOSE 80
+
+# Comando para iniciar Nginx
+CMD ["nginx", "-g", "daemon off;"]

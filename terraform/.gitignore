@@ -1,0 +1,12 @@
+# Archivos locales de Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
+
+# Archivos de variables con información sensible
+*.tfvars
+*.tfvars.json
+
+# Archivos de backup
+*.backup

@@ -1,0 +1,9 @@
+project_name          = "vod-platform"
+client_context_path   = "../client"
+server_context_path   = ".."
+tmdb_api_token        = "tu_token_api_tmdb"
+server_port           = 3000
+client_port           = 5173
+deploy_client_container = false
+use_nginx             = true
+domain_name           = ""  # Opcional, si tienes un dominio personalizado
