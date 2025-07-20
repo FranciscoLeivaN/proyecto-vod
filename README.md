@@ -9,11 +9,28 @@ This is a video-on-demand application with Express backend and React frontend us
 
 ## Setup
 
-Install all dependencies for both the server and client:
+1. Install all dependencies for both the server and client:
 
 ```bash
 npm run install:all
 ```
+
+2. Configure environment variables:
+
+Create a `.env` file in the `client` directory with the following variables:
+```
+VITE_TMDB_API_TOKEN=your_tmdb_api_token_here
+```
+
+You can copy the `.env.example` file as a starting point:
+```bash
+cp client/.env.example client/.env
+```
+
+To get a TMDB API token:
+- Register at [themoviedb.org](https://www.themoviedb.org/signup)
+- Go to your account settings -> API -> Create -> Request an API key
+- Once approved, generate an API Read Access Token (v4 auth)
 
 ## Development
 

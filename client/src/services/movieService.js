@@ -3,11 +3,19 @@ import axios from 'axios';
 // API base URL
 const API_BASE_URL = 'https://api.themoviedb.org/3';
 
+// Obtener API token desde variables de entorno
+const API_TOKEN = import.meta.env.VITE_TMDB_API_TOKEN || '';
+
+// Si no existe la API key, mostrar error
+if (!API_TOKEN) {
+  console.error('⚠️ No se ha encontrado la variable VITE_TMDB_API_TOKEN. La API puede no funcionar correctamente.');
+}
+
 // Configuración de axios con método de autenticación v4 (bearer token)
 const movieAPI = axios.create({
   baseURL: API_BASE_URL,
   headers: {
-    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwZjYwZTAwNGUzMmNlZTU2NjJmMDIxZjFhNzg4OWIzOSIsIm5iZiI6MTc1MzAzODk0MS4yMzMsInN1YiI6IjY4N2Q0MDVkMGU0ODE4YTk5OTUyOGMwZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.K4YQ9V6SkxDRmC0TQudpVi00HjjbG0G5ksw2m1hfSrg',
+    Authorization: `Bearer ${API_TOKEN}`,
     'Content-Type': 'application/json;charset=utf-8'
   },
   params: {
