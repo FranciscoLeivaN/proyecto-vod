@@ -112,8 +112,17 @@ For more details, see the [Terraform README](./terraform/README.md).
 This project is set up to automatically deploy to GitHub Pages when changes are pushed to the `main` branch.
 
 ### Prerequisites
-- GitHub repository with GitHub Pages enabled
+- GitHub repository with GitHub Pages enabled (see detailed instructions below)
 - TMDB API Token added as a repository secret named `TMDB_API_TOKEN`
+
+### Enabling GitHub Pages
+1. Go to your repository on GitHub
+2. Click on "Settings" in the top navigation
+3. Scroll down to the "GitHub Pages" section
+4. Under "Source", select "GitHub Actions"
+5. Save the settings
+
+For more detailed instructions, see [GitHub Pages Setup Guide](./docs/github-pages-setup.md)
 
 ### How it works
 1. Push your changes to the `main` branch
